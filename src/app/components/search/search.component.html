@@ -1,0 +1,30 @@
+<div class="wrapper card">
+  <mat-card>
+      <farmer-search-card
+      (onFarmerSelectedEvent)="mySelectedFarmer($event)"
+      [farmerSearchAbstractProvider]="myFarmerSearchProvider"></farmer-search-card>
+    
+    <div *ngIf="farmers.length"> 
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card" *ngFor="let farmer of farmers">
+            <div *ngIf="!errorMsg" class="card-content">
+              <div class="row">
+                <mat-form-field>
+                  <input matInput [placeholder]="labelTo" type="text" [value]="farmer.name" [disabled]='true'>
+                </mat-form-field>
+              </div>
+              <mat-form-field>
+                <input matInput [placeholder]="labelDoc" type="text" [value]="farmer.documentNumber" [disabled]='true'>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput [placeholder]="labelAddress" type="text" [value]="farmer.address" [disabled]='true'>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="errorMsg" class="msg msg-alert"> {{ errorMsg }} </div>
+  </mat-card>
+</div>
